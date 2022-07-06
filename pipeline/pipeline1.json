@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Lookup1",
+				"name": "Get Unapproved User",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -28,41 +28,34 @@
 				}
 			},
 			{
-				"name": "ForEach1",
-				"type": "ForEach",
+				"name": "SendEmail",
+				"type": "AzureFunctionActivity",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "Get Unapproved User",
 						"dependencyConditions": [
 							"Succeeded"
 						]
 					}
 				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
-					"activities": [
-						{
-							"name": "Azure Function1",
-							"type": "AzureFunctionActivity",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"functionName": "SendAlertToFillTimesheet",
-								"method": "GET"
-							},
-							"linkedServiceName": {
-								"referenceName": "KimaiAlert",
-								"type": "LinkedServiceReference"
-							}
-						}
-					]
+					"functionName": "SendEmail",
+					"method": "POST",
+					"body": {
+						"emailList": "@activity('Get Unapproved User').output.value"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "KimaiAlert",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
