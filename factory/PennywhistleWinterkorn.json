@@ -1,0 +1,9 @@
+{
+	"name": "PennywhistleWinterkorn",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "f9ef5cfc-1819-41d0-bc26-41e5b4efc6d4",
+		"tenantId": "9ecea0dd-f534-4d16-ad91-122ebf4420df"
+	}
+}
