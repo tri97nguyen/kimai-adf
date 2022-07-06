@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "Send_Email_To_Unapproved_User",
 	"properties": {
 		"activities": [
 			{
