@@ -1,0 +1,18 @@
+{
+	"name": "AzureMySql1",
+	"properties": {
+		"annotations": [],
+		"type": "AzureMySql",
+		"typeProperties": {
+			"connectionString": "Server=hexplora-mysql.mysql.database.azure.com;Port=3306;Database=kimai;UID=tri97nguyen;SSLMode=1;UseSystemTrustStore=0",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault1",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "MysqlPassword"
+			}
+		}
+	}
+}
